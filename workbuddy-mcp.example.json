@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "sketchpad": {
+      "command": "C:/path/to/sketchpad-mcp/.venv/Scripts/python.exe",
+      "args": [
+        "C:/path/to/sketchpad-mcp/server.py"
+      ],
+      "env": {
+        "SKETCHPAD_EXE": "C:/path/to/Sketchpad5/GSP5chs.exe",
+        "PYTHONUTF8": "1"
+      },
+      "type": "stdio"
+    }
+  }
+}

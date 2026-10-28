@@ -1,0 +1,2028 @@
+{
+  "source": "唐家军《几何画板5使用手册》（5.06版）；原始 PDF 不随项目分发",
+  "evidence": "manual_read_not_ui_verified",
+  "guide": "手册流程索引.md",
+  "preflight": [
+    "活动文档与页面",
+    "模态对话框及输入焦点",
+    "当前工具及子模式",
+    "所选对象类型数量次序",
+    "活动坐标系",
+    "变换标记",
+    "单位"
+  ],
+  "rules": [
+    {
+      "id": "finite_coordinates",
+      "intent": "教材式有限坐标轴",
+      "command": "对应自定义坐标系工具",
+      "requires": [
+        "准确工具路径",
+        "原点及范围控制",
+        "初始化状态"
+      ],
+      "pitfalls": [
+        "不要以普通无限直线代替用户指定工具轴",
+        "多坐标系检查自动匹配"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "坐标与函数",
+      "aliases": [
+        "有限坐标轴",
+        "工具箱坐标系",
+        "坐标轴无限延伸"
+      ],
+      "selection": [
+        "准确工具路径、原点、坐标范围控制、常规/三角刻度模式"
+      ],
+      "steps": [
+        "查询实际工具目录并选择匹配坐标系版本。",
+        "在空白画布提供原点，按实际匹配提示补充输入。",
+        "检查单位、轴长和范围控制；不要点击初始化按钮来选中它。",
+        "绘函数前明确活动坐标系，保留用于限制范围的隐藏依赖。"
+      ],
+      "success_checks": [
+        "轴长有限且可调，后续函数使用同一坐标框。",
+        "拖动单位点与轴端点时分别检查比例和范围。"
+      ],
+      "stop_conditions": [
+        "不认识控制点身份时停止拖动。",
+        "同页多坐标系自动匹配不明确时先隔离验证。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "multi_coordinates",
+        "function_plot"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          155,
+          165
+        ],
+        "pdf_range": [
+          156,
+          166
+        ]
+      }
+    },
+    {
+      "id": "function_definition",
+      "intent": "只建立函数解析式",
+      "command": "数据→新建函数",
+      "requires": [
+        "已有参数须点击引用"
+      ],
+      "pitfalls": [
+        "不要误用绘制新函数产生额外图象"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "坐标与函数",
+      "aliases": [
+        "新建函数",
+        "函数定义",
+        "只要解析式"
+      ],
+      "selection": [
+        "需要引用的实际参数或度量值"
+      ],
+      "steps": [
+        "使用数据菜单的新建函数，读取实际计算器。",
+        "点击已有参数建立引用，常数用数值输入。",
+        "核对自变量与表达式后确认；需要曲线时再单独绘图。"
+      ],
+      "success_checks": [
+        "存在原生函数对象；只建定义时没有意外新建坐标轴。",
+        "修改被引用参数后函数值更新。"
+      ],
+      "stop_conditions": [
+        "不要把参数名称当普通字符键入并假定已建立依赖。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "parameter_binding",
+        "function_plot"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          100,
+          104
+        ],
+        "pdf_range": [
+          101,
+          105
+        ]
+      }
+    },
+    {
+      "id": "function_plot",
+      "intent": "建立公式并绘图",
+      "command": "绘图→绘制新函数",
+      "requires": [
+        "活动坐标系",
+        "函数自变量形式"
+      ],
+      "pitfalls": [
+        "缺坐标系时可能自动建系"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "坐标与函数",
+      "aliases": [
+        "绘制函数",
+        "函数图像",
+        "函数绘图"
+      ],
+      "selection": [
+        "明确活动坐标系、函数自变量与所需定义域"
+      ],
+      "steps": [
+        "确认坐标系后使用绘图菜单建立或绘制函数。",
+        "需工具箱有限框时，用与坐标系匹配的函数图像工具处理原生函数对象。",
+        "核对输出是函数图像还是轨迹；仅隐藏重复无界曲线。"
+      ],
+      "success_checks": [
+        "曲线属于预期坐标系且分支/范围正确。",
+        "参数或控制点变化后曲线按定义更新。"
+      ],
+      "stop_conditions": [
+        "不要把一次函数图像直接当实体直线作垂线。",
+        "不要混选后同时隐藏原始与有限曲线。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "finite_coordinates",
+        "curve_domain",
+        "intersection"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          105,
+          109
+        ],
+        "pdf_range": [
+          106,
+          110
+        ]
+      }
+    },
+    {
+      "id": "free_path_point",
+      "intent": "可拖动路径点",
+      "command": "构造→对象上的点",
+      "requires": [
+        "实际路径"
+      ],
+      "pitfalls": [
+        "内部上的点在边界上"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "构造与依赖",
+      "aliases": [
+        "对象上的点",
+        "路径点",
+        "点沿线运动"
+      ],
+      "selection": [
+        "先确认并选择实际路径"
+      ],
+      "steps": [
+        "核对路径是线段、整条多边形边界、圆弧还是函数图像。",
+        "使用构造对象上的点。",
+        "沿路径拖动测试，再建立后续依赖。"
+      ],
+      "success_checks": [
+        "点受正确路径约束，不能脱离路径。",
+        "多边形边界点可经过所需边；边上的点仅留在该边。"
+      ],
+      "stop_conditions": [
+        "重叠路径归属不明时先查看父对象。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "dependent_path_point",
+        "dependency_inspection"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          40,
+          43
+        ],
+        "pdf_range": [
+          41,
+          44
+        ]
+      }
+    },
+    {
+      "id": "dependent_path_point",
+      "intent": "数值驱动路径点",
+      "command": "绘图→在路径上绘制点",
+      "requires": [
+        "实际路径",
+        "数值引用",
+        "路径方向与点值范围"
+      ],
+      "pitfalls": [
+        "常数与引用不同"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "坐标与函数",
+      "aliases": [
+        "参数控制路径点",
+        "路径点值",
+        "数值驱动路径点"
+      ],
+      "selection": [
+        "实际路径和实际数值引用，记录路径方向与值域"
+      ],
+      "steps": [
+        "区分自由路径点与由数值驱动的点。",
+        "读取路径点值语义：线段[0,1]，射线[0,+∞)，直线实数，闭合边界[0,1)，函数图像为自变量。",
+        "使用在路径上绘制点并点击数值对象建立引用。",
+        "用两个不同数值验证方向与范围。"
+      ],
+      "success_checks": [
+        "改变源数值时点移动；不是键入常数得到固定位置。",
+        "端点、闭合接缝与反向路径按预期处理。"
+      ],
+      "stop_conditions": [
+        "不能把所有路径点值都解释为周长比例。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "coordinate_point",
+        "parameter_binding"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          97,
+          109
+        ],
+        "pdf_range": [
+          98,
+          110
+        ]
+      }
+    },
+    {
+      "id": "coordinate_point",
+      "intent": "由坐标驱动的点",
+      "command": "绘图→绘制点",
+      "requires": [
+        "先横后纵",
+        "实际数值引用",
+        "活动坐标系"
+      ],
+      "pitfalls": [
+        "输入像素坐标不能替代几何依赖"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "坐标与函数",
+      "aliases": [
+        "绘制坐标点",
+        "横纵坐标",
+        "坐标驱动点"
+      ],
+      "selection": [
+        "活动坐标系，先横后纵的实际数值对象"
+      ],
+      "steps": [
+        "先标记预期坐标系。",
+        "依次引用横坐标和纵坐标，核对直角/极坐标模式。",
+        "执行绘制点，修改输入数值检查依赖。"
+      ],
+      "success_checks": [
+        "点的坐标与源值一致且可随源值变化。",
+        "改变其他坐标系不应改变该点归属。"
+      ],
+      "stop_conditions": [
+        "屏幕像素定位不能代替数学坐标依赖。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "multi_coordinates",
+        "parameter_binding"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          105,
+          109
+        ],
+        "pdf_range": [
+          106,
+          110
+        ]
+      }
+    },
+    {
+      "id": "intersection",
+      "intent": "构造曲线交点",
+      "command": "构造→交点或对应交点工具",
+      "requires": [
+        "对象类型",
+        "同自变量限制",
+        "范围"
+      ],
+      "pitfalls": [
+        "轨迹与轨迹不直接套用",
+        "相切可能漏点"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "构造与依赖",
+      "aliases": [
+        "求交点",
+        "两函数交点",
+        "交点构造"
+      ],
+      "selection": [
+        "两条实际可求交对象；确认函数图像/轨迹与自变量类型"
+      ],
+      "steps": [
+        "先辨认对象类型并只选所需两个对象。",
+        "检查实时交点命令是否可用，可用时执行一次。",
+        "函数自变量不一致或轨迹相交时查询对应专用工具条件，不照搬普通求交。",
+        "检查范围内全部预期交点，再拖动源对象检查交点。"
+      ],
+      "success_checks": [
+        "交点同时满足两条对象的约束。",
+        "相切、奇点和显示范围端部没有被误认作已完整验收。"
+      ],
+      "stop_conditions": [
+        "命令不可用时先查选择和类型，不原样重复。",
+        "相切漏点不能通过重复同样点击来解决。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "perpendicular",
+        "curve_sampling",
+        "systematic_diagnosis"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          42,
+          51
+        ],
+        "pdf_range": [
+          43,
+          52
+        ]
+      }
+    },
+    {
+      "id": "perpendicular",
+      "intent": "构造垂线与垂足",
+      "command": "构造→垂线，然后交点",
+      "requires": [
+        "点",
+        "实际直线型对象"
+      ],
+      "pitfalls": [
+        "一次函数图象不能代替实体直线"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "构造与依赖",
+      "aliases": [
+        "垂足",
+        "过点作垂线",
+        "平行辅助线"
+      ],
+      "selection": [
+        "一个点和一个实际直线型对象；垂足还需要原路径"
+      ],
+      "steps": [
+        "选择点和实体线段/射线/直线，核对垂线或平行线命令可用。",
+        "构造辅助线，再与目标线求交得到真正垂足。",
+        "需教材有限辅助线时连接端点和垂足，最后隐藏无限构造线。"
+      ],
+      "success_checks": [
+        "拖动源点时垂足沿目标线移动且垂直关系保持。",
+        "隐藏的辅助线依然保留交点依赖。"
+      ],
+      "stop_conditions": [
+        "工具箱轴或一次函数外观像直线，不代表能参与实体垂线构造。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "intersection",
+        "batch_construction"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          40,
+          51
+        ],
+        "pdf_range": [
+          41,
+          52
+        ]
+      }
+    },
+    {
+      "id": "dynamic_area",
+      "intent": "动态阴影与面积",
+      "command": "构造内部→度量面积",
+      "requires": [
+        "边界顺序顶点",
+        "单位归一化"
+      ],
+      "pitfalls": [
+        "cm²不等于坐标单位²"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "构造与依赖",
+      "aliases": [
+        "动态阴影",
+        "面积不变",
+        "三角形填充",
+        "矩形填充"
+      ],
+      "selection": [
+        "按边界顺序的真实依赖顶点，长度单位比例"
+      ],
+      "steps": [
+        "先完成顶点约束，再依边界顺序构造内部。",
+        "对内部度量面积，区分原始厘米面积和坐标面积。",
+        "需要坐标面积时按单位长度比例平方归一化；两轴不等比例时分别处理两轴比例。",
+        "移动控制点检验形状、填充和计算，最后隐藏中间显示而不删除依赖。"
+      ],
+      "success_checks": [
+        "内部随顶点移动，没有自交或静态替代。",
+        "面积单位正确，参考数值关系成立。"
+      ],
+      "stop_conditions": [
+        "密集轨迹线不能优先替代简单多边形内部。",
+        "不能把固定验收数值写成静态面积。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "measurement_units",
+        "fraction_caption"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          94,
+          99
+        ],
+        "pdf_range": [
+          95,
+          100
+        ]
+      }
+    },
+    {
+      "id": "fraction_caption",
+      "intent": "可编辑分式注释",
+      "command": "文本数学模板与热文本",
+      "requires": [
+        "正确分式结构",
+        "分子分母焦点",
+        "数值引用"
+      ],
+      "pitfalls": [
+        "不是普通LaTeX文本",
+        "字体问题需证据"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "文本与样式",
+      "aliases": [
+        "分数公式",
+        "上下分式",
+        "分式乱码"
+      ],
+      "selection": [
+        "原生空白文本框、符号面板状态、模板占位焦点"
+      ],
+      "steps": [
+        "确认原生文本编辑和符号面板；需要数值随动时点击实际对象插入热文本。",
+        "先插模板，再填写分子/分母或主符号/下标，用Tab换占位、方向键退出。",
+        "常用六种公式优先调用已验证的一次填充接口。",
+        "检查公式层级和字体，再调整字号；位置随点移动另查附着文本流程。"
+      ],
+      "success_checks": [
+        "公式结构可再次编辑，显示没有问号或错层嵌套。",
+        "符号说明与动态数值引用的区别明确。"
+      ],
+      "stop_conditions": [
+        "普通LaTeX字符串不会自动变成原生公式。",
+        "不能在画布文本焦点中输入字号数字。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "attached_text",
+        "parameter_binding"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          29,
+          31
+        ],
+        "pdf_range": [
+          30,
+          32
+        ]
+      }
+    },
+    {
+      "id": "curve_sampling",
+      "intent": "曲线平滑",
+      "command": "当前曲线属性→绘图→样本",
+      "requires": [
+        "只选目标曲线",
+        "观察拖动响应"
+      ],
+      "pitfalls": [
+        "不改全局作为默认",
+        "显示精度不控制采样"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "坐标与函数",
+      "aliases": [
+        "曲线不平滑",
+        "采样分辨率",
+        "拖动卡顿"
+      ],
+      "selection": [
+        "只选择目标原生曲线，知道当前样本与范围"
+      ],
+      "steps": [
+        "先检查范围和连续/离散模式，再读目标曲线属性。",
+        "只在目标对象上逐步调整样本并检查实际视觉效果。",
+        "同时测试控制点拖动响应，达到所需清晰度后停止增加。"
+      ],
+      "success_checks": [
+        "所需尺度下曲线平滑且没有跨奇点误连。",
+        "拖动响应可接受，未提高所有曲线的全局负担。"
+      ],
+      "stop_conditions": [
+        "显示小数精度和导出倍率不是曲线采样。",
+        "手册快捷键未验证时不要假定加减号只调整采样。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "curve_domain",
+        "systematic_diagnosis"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          107,
+          108
+        ],
+        "pdf_range": [
+          108,
+          109
+        ]
+      }
+    },
+    {
+      "id": "transform",
+      "intent": "几何变换",
+      "command": "变换菜单",
+      "requires": [
+        "中心/镜面/向量等标记",
+        "单位",
+        "选择次序"
+      ],
+      "pitfalls": [
+        "不要依赖自动中心"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "构造与依赖",
+      "aliases": [
+        "几何变换",
+        "平移旋转缩放",
+        "镜像变换"
+      ],
+      "selection": [
+        "原像对象、明确的中心/镜面/向量标记及正确单位"
+      ],
+      "steps": [
+        "先按任务标记中心、镜面或有向向量，再选择原像。",
+        "读取实际变换窗口，引用正确的角度、距离或比例。",
+        "执行后修改原像和控制量，检查变换像依赖。"
+      ],
+      "success_checks": [
+        "变换方向、中心和比例正确。",
+        "像随原像更新，原始依赖保留。"
+      ],
+      "stop_conditions": [
+        "不要依赖软件自动选择的中心。",
+        "普通函数图像不是所有几何变换都适用。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "transform_marks",
+        "measurement_units"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          52,
+          64
+        ],
+        "pdf_range": [
+          53,
+          65
+        ]
+      }
+    },
+    {
+      "id": "iteration",
+      "intent": "重复依赖构造",
+      "command": "变换→迭代/深度迭代",
+      "requires": [
+        "自由原象",
+        "依赖初象",
+        "深度最后选"
+      ],
+      "pitfalls": [
+        "先低深度",
+        "多映射不能构造单终点"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "构造与依赖",
+      "aliases": [
+        "迭代",
+        "分形",
+        "迭代深度"
+      ],
+      "selection": [
+        "合适的自由原像、依赖初像、映射规则；深度值最后选"
+      ],
+      "steps": [
+        "先在一个构造中验证原像到初像的依赖关系。",
+        "从低深度建立迭代，区分单映射、多映射和最终像。",
+        "参数深度使用源参数控制；检查负担后再逐渐增加。"
+      ],
+      "success_checks": [
+        "改变原像后迭代更新，层次和可见范围符合预期。",
+        "需要终点时确认属于可构造终点的单映射情形。"
+      ],
+      "stop_conditions": [
+        "多映射可能指数增加负担，不能直接套用单终点方法。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "parameter_binding",
+        "systematic_diagnosis"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          122,
+          130
+        ],
+        "pdf_range": [
+          123,
+          131
+        ]
+      }
+    },
+    {
+      "id": "tool_script",
+      "intent": "了解自定义工具输入",
+      "command": "显示脚本视图",
+      "requires": [
+        "假设",
+        "前提条件",
+        "当前匹配提示"
+      ],
+      "pitfalls": [
+        "候选对象列表不是固定点击次序",
+        "脚本不包含全部编辑历史"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "构造与依赖",
+      "aliases": [
+        "工具脚本",
+        "前提条件",
+        "自动匹配"
+      ],
+      "selection": [
+        "实际工具路径、脚本假设与前提条件、实时匹配提示"
+      ],
+      "steps": [
+        "优先查询已有实测流程；陌生工具再查看脚本。",
+        "区分自动满足的假设与仍需提供的前提对象。",
+        "按实时提示一次提供一个必要输入，不重复输入已匹配的对象。",
+        "记录最小成功例及依赖后复用，不将候选对象数组当点击次序。"
+      ],
+      "success_checks": [
+        "输入对象类型和数量符合实际工具状态。",
+        "输出依赖于预期坐标系与原像，而不是同页其他候选对象。"
+      ],
+      "stop_conditions": [
+        "脚本不保存全部合并与重定义历史。",
+        "多候选匹配不明确时先用单独页面验证。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "multi_coordinates",
+        "dependency_inspection"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          33,
+          39
+        ],
+        "pdf_range": [
+          34,
+          40
+        ]
+      }
+    },
+    {
+      "id": "object_selection",
+      "intent": "选择对象并确认类型、数量和顺序",
+      "command": "先确认活动文档和主工具；Ctrl+A在不同工具下含义不同。",
+      "requires": [
+        "活动文档、工具主模式和子模式，真实对象类型"
+      ],
+      "pitfalls": [
+        "同一位置点选失败后不得原样反复点击。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "选择与查错",
+      "aliases": [
+        "选错对象",
+        "选择顺序",
+        "构造命令灰色"
+      ],
+      "selection": [
+        "活动文档、工具主模式和子模式，真实对象类型"
+      ],
+      "steps": [
+        "先确认活动文档和主工具；Ctrl+A在不同工具下含义不同。",
+        "清除旧选择，按构造要求选择对象，检查状态栏与实时菜单。",
+        "重叠对象用信息工具或父子关系辨认，不能只按外观猜。",
+        "利用新构造对象的选中状态继续命名/度量；新任务开始前重新清选。"
+      ],
+      "success_checks": [
+        "选择集合与命令前提一致，没有遗留对象。",
+        "操作作用于所需对象而不是重叠的函数、标签或按钮。"
+      ],
+      "stop_conditions": [
+        "同一位置点选失败后不得原样反复点击。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "dependency_inspection",
+        "systematic_diagnosis"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          16,
+          39
+        ],
+        "pdf_range": [
+          17,
+          40
+        ]
+      }
+    },
+    {
+      "id": "dependency_inspection",
+      "intent": "检查父子对象并保留动态依赖",
+      "command": "用信息工具或对象属性追溯父对象和子对象。",
+      "requires": [
+        "准确的目标对象，允许查看信息或对象属性"
+      ],
+      "pitfalls": [
+        "删除父对象可能连带删除子对象。",
+        "从定义分离会解除动态关系，不能作为常规修图手段。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "选择与查错",
+      "aliases": [
+        "父子关系",
+        "隐藏依赖",
+        "图形不随动"
+      ],
+      "selection": [
+        "准确的目标对象，允许查看信息或对象属性"
+      ],
+      "steps": [
+        "用信息工具或对象属性追溯父对象和子对象。",
+        "确认当前对象是自由、路径约束、交点还是变换像。",
+        "整理时优先隐藏中间显示，保留父对象；需要修正依赖先在副本验证。"
+      ],
+      "success_checks": [
+        "拖动或修改源对象时子对象更新。",
+        "隐藏不影响后续交点、计算或填充。"
+      ],
+      "stop_conditions": [
+        "删除父对象可能连带删除子对象。",
+        "从定义分离会解除动态关系，不能作为常规修图手段。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "object_selection",
+        "parameter_redefinition"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          81,
+          88
+        ],
+        "pdf_range": [
+          82,
+          89
+        ]
+      }
+    },
+    {
+      "id": "multi_coordinates",
+      "intent": "同页多个坐标系的归属和自动匹配",
+      "command": "绘点或绘函数前选预期原点并标记相应坐标系。",
+      "requires": [
+        "原点身份、各坐标系版本与自定义工具假设"
+      ],
+      "pitfalls": [
+        "同页复制后必须重新检查自动匹配和按钮引用。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "坐标与函数",
+      "aliases": [
+        "多坐标系",
+        "坐标系串用",
+        "活动坐标系",
+        "同页多个坐标系串用"
+      ],
+      "selection": [
+        "原点身份、各坐标系版本与自定义工具假设"
+      ],
+      "steps": [
+        "绘点或绘函数前选预期原点并标记相应坐标系。",
+        "核对工具箱版本和其自动匹配条件，不以最近创建者当作正确归属。",
+        "分别拖动各自控制点检查有无串用。",
+        "匹配不明确时先分页面建立，再评估合页。"
+      ],
+      "success_checks": [
+        "一套坐标系变化不会意外改变另一幅图范围。",
+        "新对象的父对象属于预期坐标系。"
+      ],
+      "stop_conditions": [
+        "同页复制后必须重新检查自动匹配和按钮引用。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "finite_coordinates",
+        "copy_page_dependencies"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          105,
+          109
+        ],
+        "pdf_range": [
+          106,
+          110
+        ]
+      }
+    },
+    {
+      "id": "parameter_binding",
+      "intent": "让函数系数或计算式引用真实参数",
+      "command": "创建或选择源参数，确认无单位/距离/角度类型。",
+      "requires": [
+        "自由参数或实际度量值、正确单位及编辑框焦点"
+      ],
+      "pitfalls": [
+        "键入参数名称或当前数字不能当作已建立引用。",
+        "动画范围不能限制所有手动输入。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "参数与度量",
+      "aliases": [
+        "动态系数",
+        "参数引用",
+        "系数不更新",
+        "函数引用参数"
+      ],
+      "selection": [
+        "自由参数或实际度量值、正确单位及编辑框焦点"
+      ],
+      "steps": [
+        "创建或选择源参数，确认无单位/距离/角度类型。",
+        "编辑函数或计算式时点击已有数值对象建立引用。",
+        "分别修改两个参数验证每个引用；需要显示动态值时使用热文本。"
+      ],
+      "success_checks": [
+        "源参数变化会传递到曲线、点或计算值。",
+        "显示精度变化没有被误认作数值约束。"
+      ],
+      "stop_conditions": [
+        "键入参数名称或当前数字不能当作已建立引用。",
+        "动画范围不能限制所有手动输入。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "parameter_redefinition",
+        "fraction_caption"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          100,
+          104
+        ],
+        "pdf_range": [
+          101,
+          105
+        ]
+      }
+    },
+    {
+      "id": "parameter_redefinition",
+      "intent": "保留子对象并重定义参数来源",
+      "command": "先查看参数的当前定义及子对象。",
+      "requires": [
+        "现有参数、目标计算/度量来源、无循环依赖"
+      ],
+      "pitfalls": [
+        "对象标签像参数，不代表它仍能自由编辑。",
+        "不要删除重建参数来替代可保留依赖的重定义。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "参数与度量",
+      "aliases": [
+        "重定义参数",
+        "编辑参数定义",
+        "参数改为计算驱动"
+      ],
+      "selection": [
+        "现有参数、目标计算/度量来源、无循环依赖"
+      ],
+      "steps": [
+        "先查看参数的当前定义及子对象。",
+        "在实际编辑定义窗口中将来源改为计算或度量引用。",
+        "修改新来源检查子对象继续受控，记录参数不再自由。"
+      ],
+      "success_checks": [
+        "原有子对象仍存在且随新来源更新。",
+        "依赖没有形成自引用循环。"
+      ],
+      "stop_conditions": [
+        "对象标签像参数，不代表它仍能自由编辑。",
+        "不要删除重建参数来替代可保留依赖的重定义。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "parameter_binding",
+        "dependency_inspection"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          116,
+          121
+        ],
+        "pdf_range": [
+          117,
+          122
+        ]
+      }
+    },
+    {
+      "id": "attached_text",
+      "intent": "把可编辑说明附着到点并随点移动",
+      "command": "选择原始文本和目标点，读取Shift修饰下的实际编辑菜单。",
+      "requires": [
+        "原始说明文本与实际驱动点，明确是位置随动还是数值引用"
+      ],
+      "pitfalls": [
+        "删除原文本也会失去文本像。",
+        "当前MCP没有可靠的Shift菜单专用接口；不得以普通键入Shift或盲试菜单替代。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "文本与样式",
+      "aliases": [
+        "文字跟随点",
+        "标注随点移动",
+        "文字随点移动",
+        "附着文本"
+      ],
+      "selection": [
+        "原始说明文本与实际驱动点，明确是位置随动还是数值引用"
+      ],
+      "steps": [
+        "选择原始文本和目标点，读取Shift修饰下的实际编辑菜单。",
+        "使用合并文本到点，生成随动文本像。",
+        "调整文本像样式并拖动点验证；隐藏原文本显示而保留原对象。"
+      ],
+      "success_checks": [
+        "点移动时文本像跟随；修改原文本内容时像更新。",
+        "原始文本和文本像均可追溯。"
+      ],
+      "stop_conditions": [
+        "删除原文本也会失去文本像。",
+        "当前MCP没有可靠的Shift菜单专用接口；不得以普通键入Shift或盲试菜单替代。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "fraction_caption",
+        "label_management"
+      ],
+      "automation_status": "needs_modifier_menu_support",
+      "manual_pages": {
+        "printed_range": [
+          83,
+          84
+        ],
+        "pdf_range": [
+          84,
+          85
+        ]
+      }
+    },
+    {
+      "id": "label_management",
+      "intent": "区分点标签、说明、函数式和度量值",
+      "command": "先区分点标签、说明文本、函数定义和度量值。",
+      "requires": [
+        "对象类型、需要的命名顺序及标签/对象显示区别"
+      ],
+      "pitfalls": [
+        "多余字母可能属于隐藏依赖或标记，先追溯对象再处理。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "文本与样式",
+      "aliases": [
+        "标签重叠",
+        "批量命名",
+        "点名",
+        "隐藏标签"
+      ],
+      "selection": [
+        "对象类型、需要的命名顺序及标签/对象显示区别"
+      ],
+      "steps": [
+        "先区分点标签、说明文本、函数定义和度量值。",
+        "选择实际对象，使用当前可用的标签命令；批量命名遵循选择顺序。",
+        "只需隐藏标签时不要隐藏整个点；调整标签位置后拖动检查重叠。"
+      ],
+      "success_checks": [
+        "标签名称对应正确对象，几何和度量依赖仍存在。",
+        "没有把动态值替换成固定说明。"
+      ],
+      "stop_conditions": [
+        "多余字母可能属于隐藏依赖或标记，先追溯对象再处理。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "object_selection",
+        "attached_text"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          16,
+          31
+        ],
+        "pdf_range": [
+          17,
+          32
+        ]
+      }
+    },
+    {
+      "id": "tool_submode",
+      "intent": "确认移动/旋转/缩放、线段/射线/直线子模式",
+      "command": "先结束文本编辑，查看当前工具名称和状态提示。",
+      "requires": [
+        "非文本编辑状态，工具组和当前子模式"
+      ],
+      "pitfalls": [
+        "已有弹出菜单识别失败记录，不重复调用失败方法。",
+        "Shift方向键切子模式来自手册，当前MCP未封装可靠接口，不宣称可直接执行。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "选择与查错",
+      "aliases": [
+        "工具子模式",
+        "缩放箭头",
+        "射线工具",
+        "旋转箭头"
+      ],
+      "selection": [
+        "非文本编辑状态，工具组和当前子模式"
+      ],
+      "steps": [
+        "先结束文本编辑，查看当前工具名称和状态提示。",
+        "读取实际子模式选项；菜单读不到时仅在试验文档验证手册描述的切换方法。",
+        "确认目标子模式后再执行拖动或绘制。"
+      ],
+      "success_checks": [
+        "工具状态明确显示目标子模式。",
+        "小规模试验输出与所需对象类型一致。"
+      ],
+      "stop_conditions": [
+        "已有弹出菜单识别失败记录，不重复调用失败方法。",
+        "Shift方向键切子模式来自手册，当前MCP未封装可靠接口，不宣称可直接执行。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "object_selection",
+        "transform_marks"
+      ],
+      "automation_status": "needs_submode_input_verification",
+      "manual_pages": {
+        "printed_range": [
+          131,
+          140
+        ],
+        "pdf_range": [
+          132,
+          141
+        ]
+      }
+    },
+    {
+      "id": "batch_construction",
+      "intent": "对同类对象批量构造",
+      "command": "先验证一个最小构造及其对象类型。",
+      "requires": [
+        "兼容的多个对象，明确构造输出和对象选择集合"
+      ],
+      "pitfalls": [
+        "菜单不可用时缩小到最小已知集合，不能盲目追加对象。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "构造与依赖",
+      "aliases": [
+        "批量作垂线",
+        "批量中点",
+        "多个平行线"
+      ],
+      "selection": [
+        "兼容的多个对象，明确构造输出和对象选择集合"
+      ],
+      "steps": [
+        "先验证一个最小构造及其对象类型。",
+        "支持多个线段中点，或多个点与一条线/一个点与多条线的平行垂线时，按实际菜单批量执行。",
+        "检查每个预期输出，不为降低请求数混入不同前提的对象。"
+      ],
+      "success_checks": [
+        "输出数量和几何关系与输入对应。",
+        "批量前后的原有对象依赖保留。"
+      ],
+      "stop_conditions": [
+        "菜单不可用时缩小到最小已知集合，不能盲目追加对象。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "perpendicular",
+        "object_selection"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          40,
+          51
+        ],
+        "pdf_range": [
+          41,
+          52
+        ]
+      }
+    },
+    {
+      "id": "locus_construction",
+      "intent": "用驱动对象与随动对象构造真正轨迹",
+      "command": "先拖动驱动对象，确认随动对象确有依赖。",
+      "requires": [
+        "路径上的驱动对象或参数，以及依赖它的随动对象"
+      ],
+      "pitfalls": [
+        "追踪留下的屏幕痕迹不是轨迹对象。",
+        "轨迹之间不能直接套用普通函数交点方法。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "构造与依赖",
+      "aliases": [
+        "构造轨迹",
+        "驱动点",
+        "随动点"
+      ],
+      "selection": [
+        "路径上的驱动对象或参数，以及依赖它的随动对象"
+      ],
+      "steps": [
+        "先拖动驱动对象，确认随动对象确有依赖。",
+        "根据实际可用命令和脚本核实选择顺序，不能统一猜测。",
+        "构造原生轨迹，核对驱动范围、闭合接缝及采样。"
+      ],
+      "success_checks": [
+        "源对象改变后轨迹重新计算。",
+        "轨迹类型和后续求交/取点能力已经确认。"
+      ],
+      "stop_conditions": [
+        "追踪留下的屏幕痕迹不是轨迹对象。",
+        "轨迹之间不能直接套用普通函数交点方法。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "trace_vs_locus",
+        "intersection"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          48,
+          51
+        ],
+        "pdf_range": [
+          49,
+          52
+        ]
+      }
+    },
+    {
+      "id": "trace_vs_locus",
+      "intent": "选择追踪、轨迹或直接多边形内部",
+      "command": "只需运动演示时使用追踪。",
+      "requires": [
+        "明确需要临时演示痕迹还是可参与构造的对象"
+      ],
+      "pitfalls": [
+        "擦除追踪只处理显示踪迹，不能当作删除或重建轨迹。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "构造与依赖",
+      "aliases": [
+        "追踪和轨迹",
+        "轨迹填充",
+        "屏幕痕迹"
+      ],
+      "selection": [
+        "明确需要临时演示痕迹还是可参与构造的对象"
+      ],
+      "steps": [
+        "只需运动演示时使用追踪。",
+        "需要后续构造、求值或约束时使用真正轨迹并确认能力。",
+        "简单三角形/矩形阴影直接构造内部，避免密集轨迹线。"
+      ],
+      "success_checks": [
+        "输出类型满足后续操作。",
+        "没有用屏幕痕迹代替动态源对象。"
+      ],
+      "stop_conditions": [
+        "擦除追踪只处理显示踪迹，不能当作删除或重建轨迹。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "locus_construction",
+        "dynamic_area"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          89,
+          93
+        ],
+        "pdf_range": [
+          90,
+          94
+        ]
+      }
+    },
+    {
+      "id": "measurement_units",
+      "intent": "区分实际长度/面积和坐标量、角度单位",
+      "command": "先确定所需量是实际长度/面积、坐标距离/面积还是路径点值。",
+      "requires": [
+        "实际单位、两轴坐标单位比例、角度单位"
+      ],
+      "pitfalls": [
+        "三角刻度显示π不保证自定义坐标工具已同步角度单位。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "参数与度量",
+      "aliases": [
+        "面积单位",
+        "坐标面积",
+        "厘米平方",
+        "度和弧度",
+        "归一化"
+      ],
+      "selection": [
+        "实际单位、两轴坐标单位比例、角度单位"
+      ],
+      "steps": [
+        "先确定所需量是实际长度/面积、坐标距离/面积还是路径点值。",
+        "坐标面积按实际坐标单位长度的比例换算；两轴不同单位分别换算。",
+        "角度参与函数或变换时确认度/弧度及方向，不凭标签判断。"
+      ],
+      "success_checks": [
+        "改变显示比例后数学量按预期保持或换算。",
+        "公式量纲一致，未直接将cm²标作坐标面积。"
+      ],
+      "stop_conditions": [
+        "三角刻度显示π不保证自定义坐标工具已同步角度单位。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "dynamic_area",
+        "transform_marks"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          94,
+          99
+        ],
+        "pdf_range": [
+          95,
+          100
+        ]
+      }
+    },
+    {
+      "id": "curve_domain",
+      "intent": "处理曲线范围、开端点、断点与奇点",
+      "command": "先核对数学定义域与奇点，再设置目标曲线的绘图区间。",
+      "requires": [
+        "原生函数定义、所需自变量范围、连续/离散显示"
+      ],
+      "pitfalls": [
+        "视觉遮罩或空心点不能替代定义域限制。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "坐标与函数",
+      "aliases": [
+        "定义域",
+        "曲线断点",
+        "跨奇点连线",
+        "开区间",
+        "显示范围"
+      ],
+      "selection": [
+        "原生函数定义、所需自变量范围、连续/离散显示"
+      ],
+      "steps": [
+        "先核对数学定义域与奇点，再设置目标曲线的绘图区间。",
+        "需要断开的区间分别处理，不能靠高采样掩盖越过未定义点的连线。",
+        "开端点外观和数学定义分别验收；原生范围框不直接表示开区间。"
+      ],
+      "success_checks": [
+        "区间外不出现不需要的分支，奇点附近不误连。",
+        "端点是否取值与公式定义一致。"
+      ],
+      "stop_conditions": [
+        "视觉遮罩或空心点不能替代定义域限制。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "curve_sampling",
+        "function_plot"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          107,
+          109
+        ],
+        "pdf_range": [
+          108,
+          110
+        ]
+      }
+    },
+    {
+      "id": "parametric_curve",
+      "intent": "用同自变量的两个函数绘制参数曲线",
+      "command": "建立两个原生函数并使用相同自变量。",
+      "requires": [
+        "同自变量的两个原生函数、当前坐标模式与参数区间"
+      ],
+      "pitfalls": [
+        "不要把多值隐式方程直接输入单值函数编辑器。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "坐标与函数",
+      "aliases": [
+        "参数曲线",
+        "椭圆参数方程",
+        "极坐标曲线"
+      ],
+      "selection": [
+        "同自变量的两个原生函数、当前坐标模式与参数区间"
+      ],
+      "steps": [
+        "建立两个原生函数并使用相同自变量。",
+        "在绘制参数曲线窗口先指定横函数后纵函数；极坐标模式核对半径与角度函数。",
+        "设置参数区间，核对闭合接缝和角度单位。"
+      ],
+      "success_checks": [
+        "曲线与指定参数方程一致，参数变化后更新。",
+        "坐标模式、函数对应顺序和范围正确。"
+      ],
+      "stop_conditions": [
+        "不要把多值隐式方程直接输入单值函数编辑器。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "function_definition",
+        "measurement_units"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          109,
+          109
+        ],
+        "pdf_range": [
+          110,
+          110
+        ]
+      }
+    },
+    {
+      "id": "transform_marks",
+      "intent": "按正确顺序标记变换中心、镜面和向量",
+      "command": "旋转或缩放先标记中心，反射先标记镜面。",
+      "requires": [
+        "实际中心点/镜面线/有向端点，正确单位的变换量"
+      ],
+      "pitfalls": [
+        "未经核对不得使用自动中心或上一任务遗留的标记。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "构造与依赖",
+      "aliases": [
+        "标记中心",
+        "标记镜面",
+        "有向向量",
+        "缩放比例",
+        "旋转方向"
+      ],
+      "selection": [
+        "实际中心点/镜面线/有向端点，正确单位的变换量"
+      ],
+      "steps": [
+        "旋转或缩放先标记中心，反射先标记镜面。",
+        "平移向量按起点后终点标记；距离/角度引用核对量纲。",
+        "线段比按分子后分母选；执行前复核比例不是内分比。",
+        "变换后检查方向、比例和依赖，避免循环引用。"
+      ],
+      "success_checks": [
+        "正角逆时针语义和所需方向一致。",
+        "缩放3/8与内分3:5没有混淆。"
+      ],
+      "stop_conditions": [
+        "未经核对不得使用自动中心或上一任务遗留的标记。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "transform",
+        "measurement_units"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          52,
+          64
+        ],
+        "pdf_range": [
+          53,
+          65
+        ]
+      }
+    },
+    {
+      "id": "action_buttons",
+      "intent": "选择操作按钮而不误执行",
+      "command": "先辨别按钮是对象选择还是动作执行目标。",
+      "requires": [
+        "按钮范围、按钮动作、当前文档允许的改变"
+      ],
+      "pitfalls": [
+        "不得把执行结果当成选中反馈。",
+        "不确认副作用的初始化、链接和删除类动作不盲点。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "按钮与文档",
+      "aliases": [
+        "按钮误执行",
+        "初始化按钮",
+        "显示隐藏按钮",
+        "操作类按钮"
+      ],
+      "selection": [
+        "按钮范围、按钮动作、当前文档允许的改变"
+      ],
+      "steps": [
+        "先辨别按钮是对象选择还是动作执行目标。",
+        "本机已知普通/Shift点击可能执行工具箱按钮，整理时优先在已观察范围框选。",
+        "创建显示/隐藏控制时区分切换与始终显示/始终隐藏，检查运行后选择状态与淡入淡出效果。"
+      ],
+      "success_checks": [
+        "选择按钮没有改变坐标单位、初始化图形或执行动画。",
+        "重复运行控制按钮后结果可预测。"
+      ],
+      "stop_conditions": [
+        "不得把执行结果当成选中反馈。",
+        "不确认副作用的初始化、链接和删除类动作不盲点。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "animation_sequence",
+        "copy_page_dependencies"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          65,
+          75
+        ],
+        "pdf_range": [
+          66,
+          76
+        ]
+      }
+    },
+    {
+      "id": "animation_sequence",
+      "intent": "配置动画、移动和系列执行顺序",
+      "command": "单个动画先核对路径范围、方向、速度及是否只播放一次。",
+      "requires": [
+        "可动画的驱动对象或成对源目标，方向速度与停止条件"
+      ],
+      "pitfalls": [
+        "动画范围不等于手动参数输入约束。",
+        "未观察到停止状态时不能继续依赖后续画面定位。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "按钮与文档",
+      "aliases": [
+        "动画范围",
+        "系列按钮",
+        "顺序执行",
+        "同时执行",
+        "移动按钮"
+      ],
+      "selection": [
+        "可动画的驱动对象或成对源目标，方向速度与停止条件"
+      ],
+      "steps": [
+        "单个动画先核对路径范围、方向、速度及是否只播放一次。",
+        "移动操作按源对象到目标对象成对选择。",
+        "系列操作明确顺序或同时执行，设置结束条件并先低负担试运行。"
+      ],
+      "success_checks": [
+        "动画和系列能够停止，后续动作按所需顺序启动。",
+        "连续运行的首动作不会意外阻塞后续步骤。"
+      ],
+      "stop_conditions": [
+        "动画范围不等于手动参数输入约束。",
+        "未观察到停止状态时不能继续依赖后续画面定位。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "parameter_binding",
+        "action_buttons"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          65,
+          75
+        ],
+        "pdf_range": [
+          66,
+          76
+        ]
+      }
+    },
+    {
+      "id": "document_pages",
+      "intent": "新建、命名与切换页面并核对活动文档",
+      "command": "明确文档身份后打开实际文档选项。",
+      "requires": [
+        "准确活动文档与页，原文件保存状态"
+      ],
+      "pitfalls": [
+        "关闭含修改文档可能出现保存询问，不把关闭当成保存。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "按钮与文档",
+      "aliases": [
+        "多页文档",
+        "增加页",
+        "页面命名",
+        "切换页面"
+      ],
+      "selection": [
+        "准确活动文档与页，原文件保存状态"
+      ],
+      "steps": [
+        "明确文档身份后打开实际文档选项。",
+        "增加空白页或选择复制来源，命名并核对页切换状态。",
+        "每次切页后重新观察对象与坐标系，不能沿用上一页的屏幕坐标。"
+      ],
+      "success_checks": [
+        "页数、页名和活动页正确。",
+        "新增页面没有覆盖原文件或串用其他页面对象。"
+      ],
+      "stop_conditions": [
+        "关闭含修改文档可能出现保存询问，不把关闭当成保存。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "copy_page_dependencies",
+        "multi_coordinates"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          76,
+          80
+        ],
+        "pdf_range": [
+          77,
+          81
+        ]
+      }
+    },
+    {
+      "id": "copy_page_dependencies",
+      "intent": "用整页复制保留隐藏构造与自定义变换",
+      "command": "优先查文档选项→增加页→复制的实时来源列表，而非仅Ctrl+A复制可见对象。",
+      "requires": [
+        "来源文档已打开、目标文档明确、原文件保留"
+      ],
+      "pitfalls": [
+        "手册方法未在本机完成验证，不承诺复制后所有外部链接有效。",
+        "整页复制不等于完成同页四图布局。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "按钮与文档",
+      "aliases": [
+        "整页复制",
+        "复制页面",
+        "复制隐藏对象",
+        "跨文档复制"
+      ],
+      "selection": [
+        "来源文档已打开、目标文档明确、原文件保留"
+      ],
+      "steps": [
+        "优先查文档选项→增加页→复制的实时来源列表，而非仅Ctrl+A复制可见对象。",
+        "选择准确来源页；手册说明整页复制包含隐藏内容和自定义变换。",
+        "核对参数和变换的本页作用域，以及链接按钮和自定义坐标工具匹配。",
+        "保存新文件，重开并拖动验收；同页四栏排版须另行处理。"
+      ],
+      "success_checks": [
+        "隐藏依赖和自定义变换仍在，源对象修改能传递。",
+        "跨文档按钮链接没有失效或指回错误页面。"
+      ],
+      "stop_conditions": [
+        "手册方法未在本机完成验证，不承诺复制后所有外部链接有效。",
+        "整页复制不等于完成同页四图布局。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "document_pages",
+        "dependency_inspection"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          78,
+          80
+        ],
+        "pdf_range": [
+          79,
+          81
+        ]
+      }
+    },
+    {
+      "id": "style_and_layers",
+      "intent": "分别处理样式、图层、隐藏和对齐",
+      "command": "分别设置线、点、内部和文本样式，检查是否意外改变后续默认格式。",
+      "requires": [
+        "只选目标对象，明确边框/内部/说明/标签类型"
+      ],
+      "pitfalls": [
+        "显示所有隐藏不保证显露全部工具内部对象。",
+        "Shift格式和Shift+Enter来自手册，MCP修饰键能力未验证时不盲发。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "文本与样式",
+      "aliases": [
+        "图层遮挡",
+        "样式继承",
+        "文字对齐",
+        "隐藏后找不到"
+      ],
+      "selection": [
+        "只选目标对象，明确边框/内部/说明/标签类型"
+      ],
+      "steps": [
+        "分别设置线、点、内部和文本样式，检查是否意外改变后续默认格式。",
+        "内部或图片遮挡时查局部图层，不先删对象。",
+        "区分普通隐藏、工具内部隐藏、参数颜色生成的显示像。",
+        "按实际能力整理说明位置；手册列对齐方法不能当作自动行对齐。"
+      ],
+      "success_checks": [
+        "阴影不遮挡关键标签和曲线，样式一致。",
+        "隐藏对象仍可追溯，后续工具没有继承异常样式。"
+      ],
+      "stop_conditions": [
+        "显示所有隐藏不保证显露全部工具内部对象。",
+        "Shift格式和Shift+Enter来自手册，MCP修饰键能力未验证时不盲发。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "label_management",
+        "dependency_inspection"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          89,
+          93
+        ],
+        "pdf_range": [
+          90,
+          94
+        ]
+      }
+    },
+    {
+      "id": "systematic_diagnosis",
+      "intent": "按固定顺序排查不可用命令与不随动问题",
+      "command": "按对象类型→选择状态→单位→父子依赖→显示范围→采样顺序查错。",
+      "requires": [
+        "最新观察、目标对象、预期输出与已发生的输入结果"
+      ],
+      "pitfalls": [
+        "输入结果未知时先观察，不能自动重放整段动作。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "选择与查错",
+      "aliases": [
+        "操作失败",
+        "命令不可用",
+        "不知道用什么工具",
+        "图形不动"
+      ],
+      "selection": [
+        "最新观察、目标对象、预期输出与已发生的输入结果"
+      ],
+      "steps": [
+        "按对象类型→选择状态→单位→父子依赖→显示范围→采样顺序查错。",
+        "发生页面、对话框、视图或工具变化时丢弃旧定位。",
+        "只修正一个已确定的问题后重试一次；仍失败则停止该方案。",
+        "已验证构造直接复用，不在成品上重新试验工具库和未验证快捷键。"
+      ],
+      "success_checks": [
+        "失败原因有具体证据，修正后输出满足几何约束。",
+        "没有重复相同失败动作或通过静态贴图掩盖问题。"
+      ],
+      "stop_conditions": [
+        "输入结果未知时先观察，不能自动重放整段动作。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "object_selection",
+        "dependency_inspection"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          16,
+          39
+        ],
+        "pdf_range": [
+          17,
+          40
+        ]
+      }
+    },
+    {
+      "id": "dynamic_text",
+      "intent": "用热文本显示参数或度量值的实时数值",
+      "command": "先准备实际参数或度量对象，再进入原生说明编辑。",
+      "requires": [
+        "实际参数或度量值，原生说明的编辑焦点"
+      ],
+      "pitfalls": [
+        "符号k₁说明不会自动绑定已有函数系数。"
+      ],
+      "verification": "manual_only_use_workflows_for_ui_evidence",
+      "category": "文本与样式",
+      "aliases": [
+        "热文本",
+        "动态数值文字",
+        "说明引用参数",
+        "公式显示参数值"
+      ],
+      "selection": [
+        "实际参数或度量值，原生说明的编辑焦点"
+      ],
+      "steps": [
+        "先准备实际参数或度量对象，再进入原生说明编辑。",
+        "点击实际对象插入动态引用，不把当前显示数字复制成普通文字。",
+        "修改源值检查说明数值更新；需要位置随动时另外附着到点。"
+      ],
+      "success_checks": [
+        "说明中的值随源对象变化。",
+        "数值随动与位置随动分别验收。"
+      ],
+      "stop_conditions": [
+        "符号k₁说明不会自动绑定已有函数系数。"
+      ],
+      "recovery": [
+        "先核对对象类型与选择数量/次序，再核对活动页面和坐标系。",
+        "检查单位、父子依赖和显示范围；采样问题最后检查。",
+        "刷新后只验证一个修正；相同失败再次出现时停止该方案，保留成品和依赖，不盲目重复。"
+      ],
+      "related_tasks": [
+        "parameter_binding",
+        "attached_text",
+        "fraction_caption"
+      ],
+      "automation_status": "guidance_only",
+      "manual_pages": {
+        "printed_range": [
+          29,
+          31
+        ],
+        "pdf_range": [
+          30,
+          32
+        ]
+      }
+    }
+  ],
+  "schema_version": 2,
+  "source_page_convention": "printed_page + 1 = PDF_page",
+  "manual_scope": "从全书笔记提炼常见操作流程，不代表全书每个实例或814个工具均已封装/实测。",
+  "failure_policy": [
+    "先检查前提条件，命令不可用时不盲目执行。",
+    "同一失败刷新并检查一次后仍失败则停止该方案，不在成品中继续试验。",
+    "手册规则只提供操作依据；成功必须由当前界面、几何约束及持久化结果验证。"
+  ],
+  "excluded_topics": [
+    "历史ActiveX/Java/Office控件安装与兼容性",
+    "未核实的全部814个自定义工具输入",
+    "未实测的Shift修饰菜单和箭头子模式自动输入",
+    "定理示意图不替代数学证明"
+  ],
+  "basis": "手册摘要与本机已记录易错点的综合操作指引，并非逐字照录。"
+}

@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "rule_count": 36,
+  "previous_rule_count": 14,
+  "added_rules": 22,
+  "categories": {
+    "坐标与函数": 9,
+    "构造与依赖": 11,
+    "文本与样式": 5,
+    "选择与查错": 4,
+    "参数与度量": 3,
+    "按钮与文档": 4
+  },
+  "source": "唐家军《几何画板5使用手册》（5.06版）；原始 PDF 不随项目分发",
+  "rules_sha256": "3c86d0690893cfb6ba254d01f7b1a3da00e5a31ee576f275ff52ab4c18c81e59",
+  "test_count": 130,
+  "desktop_procedures_newly_verified": 0,
+  "unsupported_automation": [
+    "attached_text",
+    "tool_submode"
+  ]
+}
